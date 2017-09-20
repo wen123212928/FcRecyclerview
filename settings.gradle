@@ -1,1 +1,1 @@
-include ':app', ':fcuilib'
+include  ':fcuilib'

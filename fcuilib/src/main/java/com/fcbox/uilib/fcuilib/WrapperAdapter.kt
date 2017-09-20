@@ -12,11 +12,14 @@ import android.support.v7.widget.GridLayoutManager
  */
 class WrapperAdapter(private var mInnerAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var viewFoot: View? = null
-    private var viewHead: View? = null
 
     private var mFootViews: MutableList<View> = mutableListOf()
     private var mHeadViews: MutableList<View> = mutableListOf()
+
+    var mEmptyView: View? = null
+
+    val typeEmptyView = -1
+
 
     /**
      * 添加footView
@@ -46,27 +49,36 @@ class WrapperAdapter(private var mInnerAdapter: RecyclerView.Adapter<RecyclerVie
         return mHeadViews?.size
     }
 
+    fun isEmpty(): Boolean {
+        return mEmptyView != null && mInnerAdapter.getItemCount() == 0
+    }
+
 
     /*--------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
     override fun getItemCount(): Int {
-        return mInnerAdapter.itemCount + getHeadViewCount() + getFootViewCount()
+        return if (isEmpty()) 1 else mInnerAdapter.itemCount + getHeadViewCount() + getFootViewCount()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType < mHeadViews.size) {
-            var itemView = mHeadViews.get(viewType)
-            ViewHolder.createViewHolder(parent?.context!!, itemView)
-        } else if (viewType >= mHeadViews.size + mInnerAdapter.itemCount) {
-            var itemView = mFootViews.get(viewType - mInnerAdapter.itemCount - mHeadViews.size)
-            ViewHolder.createViewHolder(parent?.context!!, itemView)
-        } else {
-            mInnerAdapter.onCreateViewHolder(parent, viewType)
+        return when {
+            isEmpty() -> ViewHolder.createViewHolder(parent?.context!!, mEmptyView!!)
+            viewType < mHeadViews.size -> {
+                var itemView = mHeadViews[viewType]
+                ViewHolder.createViewHolder(parent?.context!!, itemView)
+            }
+            viewType >= mHeadViews.size + mInnerAdapter.itemCount -> {
+                var itemView = mFootViews.get(viewType - mInnerAdapter.itemCount - mHeadViews.size)
+                ViewHolder.createViewHolder(parent?.context!!, itemView)
+            }
+            else -> mInnerAdapter.onCreateViewHolder(parent, viewType)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        if (position < mHeadViews.size || position >= mHeadViews.size + mInnerAdapter.itemCount) {
+        if (isEmpty()) {
+
+        } else if (position < mHeadViews.size || position >= mHeadViews.size + mInnerAdapter.itemCount) {
 
         } else {
             var pos = position - mHeadViews.size
@@ -75,7 +87,7 @@ class WrapperAdapter(private var mInnerAdapter: RecyclerView.Adapter<RecyclerVie
     }
 
     override fun getItemViewType(position: Int): Int {
-        return position
+        return if (isEmpty()) 0 else position
     }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView?) {
