@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FcRecyclerview.iml" filepath="$PROJECT_DIR$/FcRecyclerview.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fcuilib/fcuilib.iml" filepath="$PROJECT_DIR$/fcuilib/fcuilib.iml" />
     </modules>
   </component>
 </project>
