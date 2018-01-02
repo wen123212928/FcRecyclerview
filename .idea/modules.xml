@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FcRecyclerview.iml" filepath="$PROJECT_DIR$/FcRecyclerview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/fcuilib/fcuilib.iml" filepath="$PROJECT_DIR$/fcuilib/fcuilib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FcUILiarbry.iml" filepath="$PROJECT_DIR$/FcUILiarbry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uilib/uilib.iml" filepath="$PROJECT_DIR$/uilib/uilib.iml" />
     </modules>
   </component>
 </project>

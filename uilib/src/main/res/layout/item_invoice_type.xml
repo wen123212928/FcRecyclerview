@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/tv_invoice_type_txt"
+          android:layout_width="90dp"
+          android:layout_height="wrap_content"
+          android:background="@drawable/shape_frame_gray_6_white"
+          android:gravity="center"
+          android:paddingBottom="10dp"
+          android:paddingTop="10dp"
+          android:textColor="@color/text4"
+          android:textSize="15sp"/>
+

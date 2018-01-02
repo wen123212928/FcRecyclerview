@@ -1,1 +1,1 @@
-include  ':fcuilib'
+include ':uilib', ':app'
