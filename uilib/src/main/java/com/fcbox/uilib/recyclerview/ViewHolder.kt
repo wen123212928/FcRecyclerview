@@ -226,6 +226,7 @@ class ViewHolder(private val mContext: Context, val convertView: View) : Recycle
                     false)
             return ViewHolder(context, itemView)
         }
+
     }
 
 
